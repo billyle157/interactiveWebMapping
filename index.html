@@ -94,7 +94,7 @@
 
         async function geojsonFetch() { 
             let response = await fetch('assets/wa-covid-data-102521.geojson');
-            let stateData = await response.json();
+            let countyData = await response.json();
 
             const layers = [
                 '0-4',
@@ -118,15 +118,15 @@
             ];
 
             map.on('load', function loadingData() {
-                map.addSource('stateData', {
+                map.addSource('countyData', {
                     type: 'geojson',
-                    data: stateData
+                    data: countyData
                 });
             
                 map.addLayer({
-                    'id': 'stateData-layer',
+                    'id': 'countyData-layer',
                     'type': 'fill',
-                    'source': 'stateData',
+                    'source': 'countyData',
                     'paint': {
                         'fill-color': [
                             'step',
@@ -170,12 +170,12 @@
                 });
 
                 map.on('mousemove', ({point}) => {
-                    const state = map.queryRenderedFeatures(point, {
-                        layers: ['stateData-layer']
+                    const county = map.queryRenderedFeatures(point, {
+                        layers: ['countyData-layer']
                     });
-                    document.getElementById('text-description').innerHTML = state.length ?
-                        `<h3>${state[0].properties.name}</h3><p><strong><em>${state[0].properties.deathPer10k}</strong> deaths per 10k people</em></p>` :
-                        `<p>Hover over a state!</p>`;
+                    document.getElementById('text-description').innerHTML = county.length ?
+                        `<h3>${county[0].properties.name}</h3><p><strong><em>${county[0].properties.deathPer10k}</strong> deaths per 10k people</em></p>` :
+                        `<p>Hover over a county!</p>`;
                 });
                 
             });
