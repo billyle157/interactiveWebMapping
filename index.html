@@ -130,7 +130,7 @@
                     'paint': {
                         'fill-color': [
                             'step',
-                            ['get', 'density'],
+                            ['get', 'deathPer10k'],
                             '#FFEDA0',   // stop_output_0
                             10,          // stop_input_0
                             '#FED976',   // stop_output_1
@@ -174,7 +174,7 @@
                         layers: ['stateData-layer']
                     });
                     document.getElementById('text-description').innerHTML = state.length ?
-                        `<h3>${state[0].properties.name}</h3><p><strong><em>${state[0].properties.density}</strong> people per square mile</em></p>` :
+                        `<h3>${state[0].properties.name}</h3><p><strong><em>${state[0].properties.deathPer10k}</strong> deaths per 10k people</em></p>` :
                         `<p>Hover over a state!</p>`;
                 });
                 
