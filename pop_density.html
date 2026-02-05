@@ -93,7 +93,7 @@
         );
 
         async function geojsonFetch() { 
-            let response = await fetch('assets/state_data.geojson');
+            let response = await fetch('https://github.com/billyle157/interactiveWebMapping/blob/main/assets/state_data.geojson');
             let stateData = await response.json();
 
             const layers = [
